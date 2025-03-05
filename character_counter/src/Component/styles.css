@@ -82,3 +82,28 @@ body {
   font-weight: bold;
   color: #2575fc;
 }
+/* Add these styles to your existing CSS */
+.character-count-header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.copy-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.copy-button:hover {
+  transform: scale(1.1);
+}
+
+.copy-button:active {
+  transform: scale(0.95);
+}

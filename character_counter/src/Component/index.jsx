@@ -1,11 +1,41 @@
 import { useState } from "react";
+import { Copy, Check } from "lucide-react";
 import "./styles.css";
 
 export const CharacterCount = () => {
   const [text, setText] = useState("");
+  const [isCopied, setIsCopied] = useState(false);
+
+  // Clipboard copy function
+  const handleCopyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setIsCopied(true);
+
+      // Reset the copied state after 2 seconds
+      setTimeout(() => {
+        setIsCopied(false);
+      }, 2000);
+    } catch (err) {
+      console.error("Failed to copy text: ", err);
+      alert("Failed to copy text");
+    }
+  };
+
   return (
     <div className="character-count-container">
-      <div className="character-count-header">Character Counter</div>
+      <div className="character-count-header">
+        Character Counter
+        {text && (
+          <button
+            onClick={handleCopyToClipboard}
+            className="copy-button"
+            title={isCopied ? "Copied!" : "Copy to Clipboard"}
+          >
+            {isCopied ? <Check color="white" /> : <Copy color="white" />}
+          </button>
+        )}
+      </div>
       <form>
         <textarea
           className="character-count-textarea"
