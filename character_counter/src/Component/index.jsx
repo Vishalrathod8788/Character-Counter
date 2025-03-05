@@ -1,35 +1,50 @@
 import { useState } from "react";
+import "./styles.css";
 
 export const CharacterCount = () => {
   const [text, setText] = useState("");
-  const charLen = 0;
-  const wordLen = 0;
-  const sentenceLen = 0;
-  const lineLen = 0;
-
-  const handleCharacterCount = () => {
-    return text.length;
-  };
-  const handleWordCount = () => {};
-  const handleSentencesCount = () => {};
-  const handleLineCount = () => {};
-
   return (
-    <>
-      <h1>Character Count</h1>
+    <div className="character-count-container">
+      <div className="character-count-header">Character Counter</div>
       <form>
         <textarea
-          name="txtAre"
-          placeholder="Type Something..."
+          className="character-count-textarea"
+          name="txtArea"
+          placeholder="Start typing or paste to begin"
           value={text}
           onChange={(e) => setText(e.target.value)}
-          rows={8}
         ></textarea>
-        <p>Character Count : {}</p>
-        <p>Word Count : {handleWordCount}</p>
-        <p>Sentences Count : {handleSentencesCount}</p>
-        <p>Line Count : {handleLineCount}</p>
+        <div className="character-count-stats">
+          <div className="character-count-stat">
+            <span className="character-count-stat-label">Chars</span>
+            <span className="character-count-stat-value">{text.length}</span>
+          </div>
+          <div className="character-count-stat">
+            <span className="character-count-stat-label">Words</span>
+            <span className="character-count-stat-value">
+              {text.trim() ? text.trim().split(/\s+/).length : 0}
+            </span>
+          </div>
+          <div className="character-count-stat">
+            <span className="character-count-stat-label">Sentences</span>
+            <span className="character-count-stat-value">
+              {text.split(".").length - 1}
+            </span>
+          </div>
+          <div className="character-count-stat">
+            <span className="character-count-stat-label">Paragraphs</span>
+            <span className="character-count-stat-value">
+              {text.split("\n").length - 1}
+            </span>
+          </div>
+          <div className="character-count-stat">
+            <span className="character-count-stat-label">Spaces</span>
+            <span className="character-count-stat-value">
+              {text.split(" ").length - 1}
+            </span>
+          </div>
+        </div>
       </form>
-    </>
+    </div>
   );
 };
